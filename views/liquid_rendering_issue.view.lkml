@@ -24,13 +24,12 @@ view: liquid_rendering_issue {
   measure: liquid_rendering_issue {
     description: "Prueba de formato con HTML"
     type: sum
-    value_format: "#,##0"
+    value_format: "#.##0"
     html:
-
-    <div style="background-color: lightblue>100</div>
-
-
-    sql: ${TABLE}.id ;;
+    {% if value > 10000 %}
+    <div style="background-color: lightblue;">{{ rendered_value }}</div>
+    {% endif %};;
+    sql: COALESCE(${TABLE}.id, 0);;
   }
 
 
