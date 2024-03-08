@@ -1,17 +1,37 @@
 view: liquid_rendering_issue {
-  sql_table_name: demo_db.Salary;;
+  sql_table_name: demo_db.users ;;
+
+  dimension_group: created {
+    type: time
+    timeframes: [raw, time, date, week, month, quarter, year]
+    sql: ${TABLE}.id ;;
+  }
+
+  measure: column_1 {
+    description: "Prueba de formato con HTML"
+    type: sum
+    value_format: "#,##0"
+    sql: ${TABLE}.id ;;
+  }
+
+  measure: column_2 {
+    description: "Prueba de formato con HTML"
+    type: sum
+    value_format: "#,##0"
+    sql: ${TABLE}.id ;;
+  }
 
   measure: liquid_rendering_issue {
     description: "Prueba de formato con HTML"
     type: sum
     value_format: "#,##0"
-
     html:
-    {% if rendered_value > 10000 %}
-    <div style="background-color: lightblue; color: red;">{{ rendered_value | number_format }}</div>
-    {% else %}
-    <div style="background-color: transparent;">{{ rendered_value | number_format }}</div>
-    {% endif %} ;;
-  sql: ${TABLE}.Salary ;;
- }
+
+    <div style="background-color: lightblue>100</div>
+
+
+    sql: ${TABLE}.id ;;
+  }
+
+
 }
